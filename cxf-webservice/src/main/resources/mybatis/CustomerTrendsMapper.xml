@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigdata.cxf.dao.CustomerTrendsDao">
+
+	<!-- Map结果 -->
+	<resultMap type="com.bigdata.cxf.entity.CustomerTrends" id="allMap">
+		<result column="MONTH" property="month"/><!-- 月份 -->
+		<result column="TOTAL" property="total"/><!-- 客户总数 -->
+	</resultMap>
+	
+	<!-- 获取最近12个月的客户趋势数据 -->
+	<select id="listCustomerTrends" resultMap="allMap" >
+		SELECT
+			ltmct.`MONTH`,ltmct.TOTAL
+		FROM
+			visualization.lately_twelve_months_customer_trend ltmct
+		ORDER BY ltmct.`MONTH` 
+	</select>
+	
+</mapper>
